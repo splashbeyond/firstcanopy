@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Leaf Group: Proprietary Buy-Side Origination</title>
@@ -58,13 +59,13 @@
 
   <!-- VALUE PROP -->
   <section class="section" id="why">
-    <div class="prose">
+    <div class="prose reveal">
       <h2 class="heading">Qualified meetings, built on your mandate.</h2>
       <p class="body-text">At Leaf Group, we blend the discipline of institutional deal sourcing with the persistence of a founder chasing one specific outcome. Our clients are private equity sponsors, family offices, and strategic acquirers who already have a thesis. We exist to turn that thesis into a conversation. We are originators first, advisors second.</p>
       <p class="body-text">With a research-first process and direct lines to owners other firms never reach, we don't hand you a list. We bring precision, discretion, and proof of intent. This is origination reimagined: thesis meets target, quietly.</p>
     </div>
 
-    <div class="pillar-row">
+    <div class="pillar-row reveal-stagger">
       <!-- EBITDA band below is illustrative — swap for Leaf Group's real target range. -->
       <div class="pillar-card">
         <h3 class="pillar-title">Sector-Specific Search</h3>
@@ -85,7 +86,7 @@
     </div>
 
     <!-- PLACEHOLDER FIGURES — swap for Leaf Group's real numbers before launch. -->
-    <div class="stat-staircase">
+    <div class="stat-staircase reveal-blur">
       <div class="stat-block stat-green">
         <span class="stat-number">100+</span>
         <span class="stat-label">Deals Sourced</span>
@@ -103,12 +104,12 @@
 
   <!-- APPROACH -->
   <section class="section" id="approach">
-    <div class="prose">
+    <div class="prose reveal">
       <h2 class="heading">From thesis to qualified conversation.</h2>
       <p class="body-text">The work is structured as a disciplined operating cadence, not a black box. Every mandate moves through the same four stages, in view the whole way.</p>
     </div>
 
-    <div class="step-list">
+    <div class="step-list reveal-stagger">
       <div class="step-item is-open">
         <button class="step-header" aria-expanded="true" aria-controls="step-body-1" id="step-head-1">
           <span class="step-number">01</span>
@@ -162,7 +163,7 @@
 
   <!-- AUDIENCE SPLIT -->
   <section class="section">
-    <div class="audience-grid">
+    <div class="audience-grid reveal-stagger">
       <div class="audience-card audience-blue" id="capital">
         <h3 class="audience-title">Built for buyers who know what they want.</h3>
         <p class="audience-text">Leaf Group is designed for sponsors and acquisition teams with a defined EBITDA band and sector thesis who cannot rely on intermediated flow alone. The engagement is retained, targeted, and narrow enough to produce signal, not noise.</p>
@@ -178,10 +179,10 @@
 
   <!-- CLOSING CTA -->
   <section class="cta-panel" id="contact">
-    <div class="cta-inner">
+    <div class="cta-inner reveal">
       <h2 class="cta-title">Let's build your search.</h2>
       <p class="cta-text">Share the buyer profile, target criteria, and transaction objective. We'll respond if the mandate is specific enough to move on.</p>
-      <a href="mailto:mandates@leafgroup.co" class="pill pill-filled cta-button">Start a Mandate</a>
+      <a href="mailto:mandates@leafgroup.co" class="pill pill-filled cta-button">Speak With Us</a>
     </div>
   </section>
 
@@ -235,6 +236,24 @@
       toggle.setAttribute('aria-expanded', false);
     });
   });
+
+  // Scroll-reveal: fade sections and staggered groups into view as they're scrolled to.
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealSelector = '.reveal, .reveal-stagger, .reveal-blur';
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll(revealSelector).forEach((el) => revealObserver.observe(el));
+  } else {
+    document.querySelectorAll(revealSelector).forEach((el) => el.classList.add('is-visible'));
+  }
 
   // Approach accordion: one step open at a time, click a header to jump to it.
   const stepItems = document.querySelectorAll('.step-item');

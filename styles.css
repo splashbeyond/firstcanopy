@@ -626,6 +626,90 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-steel-gray);
 }
 
+/* ---------- SCROLL ANIMATIONS ---------- */
+
+/* Hero: fades/rises in once on load — not scroll-triggered, since it's
+   already in view. Pure CSS, so it still runs if JS never loads. */
+.hero-title,
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-title { animation-delay: 0.1s; }
+.hero-subtitle { animation-delay: 0.28s; }
+
+@keyframes heroRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll reveal, gated behind .js so content never gets stuck hidden
+   if the observer script fails to load — see index.html. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.25s; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.35s; }
+
+/* Stat staircase already carries a static transform (the offset stair
+   effect), so its reveal uses opacity + blur instead of translateY to
+   avoid two conflicting transform values on the same element. */
+.js .reveal-blur > * {
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.7s ease, filter 0.7s ease;
+}
+.reveal-blur.is-visible > * {
+  opacity: 1;
+  filter: blur(0);
+}
+.reveal-blur > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-blur > *:nth-child(2) { transition-delay: 0.18s; }
+.reveal-blur > *:nth-child(3) { transition-delay: 0.31s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title, .hero-subtitle {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .reveal, .reveal-stagger > *, .reveal-blur > * {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Gentle hover lift — no shadows, per the flat CQCM system; elevation
+   reads through a small upward shift instead. Both cards are already
+   direct children of a .reveal-stagger container, which sets a
+   transform transition — reuse it here rather than redeclaring
+   `transition` (that would silently drop the opacity fade above). */
+.pillar-card:hover,
+.audience-card:hover {
+  transform: translateY(-4px);
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1080px) {
   .nav-links { display: none; }
