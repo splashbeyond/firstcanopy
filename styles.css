@@ -505,10 +505,6 @@ a { color: inherit; text-decoration: none; }
   margin: 0 0 var(--spacing-20);
 }
 
-.audience-meta {
-  font-size: 13px;
-  color: var(--color-ink-black);
-}
 
 /* ---------- CLOSING CTA ---------- */
 .cta-panel {
