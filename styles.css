@@ -108,11 +108,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-inner {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 24px var(--side-pad);
+  padding: 24px clamp(20px, 3vw, 48px);
   gap: var(--spacing-40);
 }
 
@@ -196,7 +195,7 @@ a { color: inherit; text-decoration: none; }
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   min-height: clamp(480px, 56vw, 660px);
   overflow: hidden;
 }
@@ -229,7 +228,7 @@ a { color: inherit; text-decoration: none; }
 .hero-content {
   position: relative;
   max-width: 680px;
-  padding: var(--spacing-40) var(--side-pad) var(--spacing-60);
+  padding: var(--spacing-40) clamp(20px, 3vw, 48px);
 }
 
 .hero-title {
