@@ -84,18 +84,19 @@
       </div>
     </div>
 
+    <!-- PLACEHOLDER FIGURES — swap for Leaf Group's real numbers before launch. -->
     <div class="stat-staircase">
       <div class="stat-block stat-green">
-        <span class="stat-number">6–12</span>
-        <span class="stat-label">Month Mandate Duration</span>
+        <span class="stat-number">100+</span>
+        <span class="stat-label">Deals Sourced</span>
       </div>
       <div class="stat-block stat-mint">
-        <span class="stat-number">1:1</span>
-        <span class="stat-label">Thesis-to-Target Mapping</span>
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Years Combined Experience</span>
       </div>
       <div class="stat-block stat-blue">
-        <span class="stat-number">0</span>
-        <span class="stat-label">Mass-Blast List Campaigns</span>
+        <span class="stat-number">$1B+</span>
+        <span class="stat-label">Aggregate Deal Value Tracked</span>
       </div>
     </div>
   </section>
@@ -107,26 +108,54 @@
       <p class="body-text">The work is structured as a disciplined operating cadence — not a black box. Every mandate moves through the same four stages, in view the whole way.</p>
     </div>
 
-    <div class="step-grid">
-      <div class="step-card">
-        <span class="step-number">01</span>
-        <h3 class="step-title">Mandate Definition</h3>
-        <p class="step-text">Buyer profile, investment criteria, strategic rationale, and what qualifies as handoff-ready.</p>
+    <div class="step-list">
+      <div class="step-item is-open">
+        <button class="step-header" aria-expanded="true" aria-controls="step-body-1" id="step-head-1">
+          <span class="step-number">01</span>
+          <span class="step-title">Mandate Definition</span>
+          <span class="step-icon" aria-hidden="true"></span>
+        </button>
+        <div class="step-body" id="step-body-1" role="region" aria-labelledby="step-head-1">
+          <div class="step-body-inner">
+            <p class="step-text">Buyer profile, investment criteria, strategic rationale, and what qualifies as handoff-ready.</p>
+          </div>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-number">02</span>
-        <h3 class="step-title">Universe Build</h3>
-        <p class="step-text">Relevant companies, ownership structures, executive contacts, and priority tiers.</p>
+      <div class="step-item">
+        <button class="step-header" aria-expanded="false" aria-controls="step-body-2" id="step-head-2">
+          <span class="step-number">02</span>
+          <span class="step-title">Universe Build</span>
+          <span class="step-icon" aria-hidden="true"></span>
+        </button>
+        <div class="step-body" id="step-body-2" role="region" aria-labelledby="step-head-2">
+          <div class="step-body-inner">
+            <p class="step-text">Relevant companies, ownership structures, executive contacts, and priority tiers.</p>
+          </div>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-number">03</span>
-        <h3 class="step-title">Proprietary Engagement</h3>
-        <p class="step-text">Direct, researched outreach positioned around a specific acquisition rationale.</p>
+      <div class="step-item">
+        <button class="step-header" aria-expanded="false" aria-controls="step-body-3" id="step-head-3">
+          <span class="step-number">03</span>
+          <span class="step-title">Proprietary Engagement</span>
+          <span class="step-icon" aria-hidden="true"></span>
+        </button>
+        <div class="step-body" id="step-body-3" role="region" aria-labelledby="step-head-3">
+          <div class="step-body-inner">
+            <p class="step-text">Direct, researched outreach positioned around a specific acquisition rationale.</p>
+          </div>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-number">04</span>
-        <h3 class="step-title">Qualification &amp; Transfer</h3>
-        <p class="step-text">Fit, timing, and motivation confirmed before any introduction is made.</p>
+      <div class="step-item">
+        <button class="step-header" aria-expanded="false" aria-controls="step-body-4" id="step-head-4">
+          <span class="step-number">04</span>
+          <span class="step-title">Qualification &amp; Transfer</span>
+          <span class="step-icon" aria-hidden="true"></span>
+        </button>
+        <div class="step-body" id="step-body-4" role="region" aria-labelledby="step-head-4">
+          <div class="step-body-inner">
+            <p class="step-text">Fit, timing, and motivation confirmed before any introduction is made.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -205,6 +234,23 @@
       mobileNav.classList.remove('open');
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Approach accordion: one step open at a time, click a header to jump to it.
+  const stepItems = document.querySelectorAll('.step-item');
+  stepItems.forEach((item) => {
+    const header = item.querySelector('.step-header');
+    header.addEventListener('click', () => {
+      const alreadyOpen = item.classList.contains('is-open');
+      stepItems.forEach((other) => {
+        other.classList.remove('is-open');
+        other.querySelector('.step-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!alreadyOpen) {
+        item.classList.add('is-open');
+        header.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 </script>
