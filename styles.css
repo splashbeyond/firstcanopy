@@ -512,7 +512,8 @@ a { color: inherit; text-decoration: none; }
 /* ---------- CLOSING CTA ---------- */
 .cta-panel {
   background: var(--color-cooperative-green);
-  padding: var(--section-pad-y) var(--side-pad) var(--spacing-80);
+  margin-top: var(--section-pad-y);
+  padding: var(--spacing-80) var(--side-pad);
 }
 
 .cta-inner {
