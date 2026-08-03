@@ -60,9 +60,13 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
-/* Young Serif ships tight fl/ff/ffi ligatures that fuse into a single blob
-   at display sizes ("flow", "offices"). Turn them off everywhere the display
-   face is used and add a hair of tracking so the pairs read as letters. */
+/* Young Serif's f has a flag that overhangs its advance width, so it collides
+   with any following ascender. The font has no kern pair for it. Wrap the f in
+   .kern-f to push the next letter clear. Used in "flow" and "offices". */
+.kern-f { letter-spacing: 0.06em; }
+
+/* The same pairs also have fused ligature glyphs at display sizes. Turn them
+   off everywhere the display face is used, with a hair of tracking. */
 .nav-brand,
 .hero-title,
 .heading,
