@@ -520,6 +520,10 @@ a { color: inherit; text-decoration: none; }
   scroll-margin-top: 100px;
 }
 
+/* Single-card variant, for the band aimed at business owners. */
+.audience-grid-full { grid-template-columns: 1fr; }
+.audience-grid-full .audience-text { max-width: 70ch; }
+
 .audience-blue { background: var(--color-cooperative-green); }
 .audience-mint { background: var(--color-mint-whisper); }
 
