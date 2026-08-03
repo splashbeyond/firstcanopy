@@ -2,8 +2,9 @@
   /* Colors — canopy green anchor, bone base, brass as the single bright.
      Variable names kept from v2 so the rest of the sheet is untouched. */
   --color-cooperative-green: #10352A;  /* canopy */
-  --color-civic-blue: #C9A227;         /* brass */
+  --color-civic-blue: #C2A661;         /* muted gold — small accents, buttons */
   --color-sunset-coral: #2E5546;       /* moss */
+  --color-accent-soft: #DCCDAF;        /* same hue, lightened for large fills */
   --color-mint-whisper: #E8EBE3;       /* soft sage */
   --color-ink-black: #14201B;
   --color-paper-white: #F5F2EC;        /* bone */
@@ -371,7 +372,9 @@ a { color: inherit; text-decoration: none; }
 
 .stat-green { background: var(--color-cooperative-green); }
 .stat-mint { background: var(--color-mint-whisper); }
-.stat-blue { background: var(--color-civic-blue); }
+/* Large fills take the lighter tint; the saturated accent is reserved for
+   small elements, so the 10% never turns into 30%. */
+.stat-blue { background: var(--color-accent-soft); }
 
 /* Canopy is the only dark block in the row, so it flips its type to bone. */
 .stat-green .stat-number,
