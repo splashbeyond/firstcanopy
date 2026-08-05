@@ -75,3 +75,21 @@ html,body{background:var(--deep)}
 .compliance-body{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;padding:8px 0 24px;max-width:1200px}
 .compliance-body p{margin:0 0 16px;font-size:11px;line-height:1.7}
 @media(max-width:700px){.compliance-body{grid-template-columns:1fr}.compliance-disclosure{margin-top:20px}.compliance-lead{font-size:11px}}
+
+/* Mobile navigation */
+.menu-toggle,.mobile-menu{display:none}
+@media(max-width:900px){
+  .header-cta{display:none}
+  .menu-toggle{display:grid;place-content:center;gap:6px;width:48px;height:48px;padding:0;border:1px solid rgba(255,255,255,.24);background:rgba(12,43,35,.72);color:var(--white);cursor:pointer;justify-self:end;position:relative;z-index:42;backdrop-filter:blur(10px)}
+  .menu-toggle span{display:block;width:19px;border-top:1.5px solid currentColor;transition:transform 220ms var(--ease),opacity 160ms ease}
+  .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.75px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+  .mobile-menu{display:flex;position:absolute;left:20px;right:20px;top:calc(72px + env(safe-area-inset-top));z-index:40;flex-direction:column;background:rgba(12,43,35,.97);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 60px rgba(0,0,0,.24);padding:10px 22px 22px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity 180ms ease,transform 240ms var(--ease),visibility 0s linear 240ms;backdrop-filter:blur(16px)}
+  .mobile-menu.is-open{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
+  .mobile-menu nav{display:flex;flex-direction:column;gap:0}
+  .mobile-menu nav a{min-height:58px;display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(255,255,255,.14);font:500 18px/1.2 "Manrope";opacity:1}
+  .mobile-menu nav a span{font:600 9px/1 "Manrope";letter-spacing:.1em;color:var(--moss)}
+  .mobile-menu-cta{min-height:52px;margin-top:20px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;background:var(--acid);color:var(--deep);font-weight:600}
+}
+@media(max-width:600px){.site-header>.menu-toggle{font-size:initial;min-width:48px}.mobile-menu{left:12px;right:12px}}
+@media(prefers-reduced-motion:reduce){.mobile-menu,.menu-toggle span{transition:none}}

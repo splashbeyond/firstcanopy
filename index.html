@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -20,7 +20,18 @@
     <nav aria-label="Primary navigation">
       <a href="#coverage">Coverage</a><a href="#standard">Our standard</a><a href="#process">Process</a>
     </nav>
-    <a class="button button-small" href="#mandate">Build a mandate <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></a>
+    <a class="button button-small header-cta" href="#mandate">Build a mandate <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+      <span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="#coverage"><span>01</span>Coverage</a>
+        <a href="#standard"><span>02</span>Our standard</a>
+        <a href="#process"><span>03</span>Process</a>
+      </nav>
+      <a class="mobile-menu-cta" href="#mandate">Build a mandate <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></a>
+    </div>
   </header>
 
   <main id="main">
@@ -123,6 +134,6 @@
       </details>
     </div>
   </footer>
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

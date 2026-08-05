@@ -51,6 +51,27 @@ heroVideo?.addEventListener('ended', () => {
   heroVideo.currentTime = .04;
   heroVideo.play().catch(() => {});
 });
+
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+function setMobileMenu(open) {
+  menuToggle?.setAttribute('aria-expanded', String(open));
+  menuToggle?.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  mobileMenu?.setAttribute('aria-hidden', String(!open));
+  mobileMenu?.classList.toggle('is-open', open);
+}
+menuToggle?.addEventListener('click', () => setMobileMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
+mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuToggle?.getAttribute('aria-expanded') === 'true') {
+    setMobileMenu(false);
+    menuToggle.focus();
+  }
+});
+document.addEventListener('click', event => {
+  if (menuToggle?.getAttribute('aria-expanded') !== 'true') return;
+  if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) setMobileMenu(false);
+});
 let currentRouteProgress = 0;
 let routeAnimation;
 
