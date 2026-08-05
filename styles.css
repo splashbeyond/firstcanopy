@@ -10,7 +10,8 @@ footer .brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(16%) sa
 .hero{grid-template-columns:minmax(0,900px);align-items:center}
 .hero{position:relative;isolation:isolate}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,35,28,.94) 0%,rgba(5,35,28,.82) 48%,rgba(5,35,28,.56) 100%);z-index:-1}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2;background:var(--deep)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2;background:var(--deep) url('assets/hero-poster.jpg') center/cover no-repeat;opacity:1;transition:opacity 220ms ease}
+.hero-video.is-looping{opacity:0}
 .hero-copy{max-width:900px;position:relative}
 .section-heading{grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);gap:7vw;align-items:end;padding-bottom:45px;border-bottom:1px solid var(--line)}
 .section-heading h2{max-width:950px}
@@ -46,3 +47,19 @@ footer .brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(16%) sa
 .trust-line{margin-top:52px}
 @media(max-width:900px){.section{padding-top:78px;padding-bottom:78px}.hero{padding-bottom:44px}}
 @media(max-width:600px){.section{padding-top:64px;padding-bottom:64px}.hero{padding-bottom:42px}.trust-line{margin-top:38px}}
+
+/* SVG CTA icons prevent mobile emoji substitution */
+.cta-icon{width:18px;height:18px;display:block;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.text-link{display:inline-flex;align-items:center;gap:12px}
+.text-link .cta-icon{width:16px;height:16px}
+
+/* Simplified coverage message */
+.coverage-content{display:block}
+.coverage-content .large-copy{max-width:920px;margin-left:auto;font-size:clamp(24px,2.5vw,36px);line-height:1.42}
+
+/* Extend the hero through mobile browser safe areas */
+html,body{background:var(--deep)}
+.coverage,footer{background:var(--paper)}
+.site-header{top:0;height:calc(88px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}
+.hero{padding-top:calc(150px + env(safe-area-inset-top))}
+@media(max-width:600px){.site-header{height:calc(72px + env(safe-area-inset-top))}.hero{padding-top:calc(120px + env(safe-area-inset-top))}}

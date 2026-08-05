@@ -29,6 +29,28 @@ function syncHeroMotion() {
 }
 syncHeroMotion();
 reducedMotion.addEventListener?.('change', syncHeroMotion);
+let isResettingHeroVideo = false;
+function resetHeroVideoLoop() {
+  if (!heroVideo || isResettingHeroVideo || !Number.isFinite(heroVideo.duration)) return;
+  if (heroVideo.duration - heroVideo.currentTime > .45) return;
+  isResettingHeroVideo = true;
+  heroVideo.classList.add('is-looping');
+  window.setTimeout(() => {
+    heroVideo.currentTime = .04;
+    heroVideo.play().catch(() => {});
+  }, 180);
+}
+heroVideo?.addEventListener('timeupdate', resetHeroVideoLoop);
+heroVideo?.addEventListener('seeked', () => {
+  window.requestAnimationFrame(() => {
+    heroVideo.classList.remove('is-looping');
+    isResettingHeroVideo = false;
+  });
+});
+heroVideo?.addEventListener('ended', () => {
+  heroVideo.currentTime = .04;
+  heroVideo.play().catch(() => {});
+});
 let currentRouteProgress = 0;
 let routeAnimation;
 
