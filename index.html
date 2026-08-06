@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -56,7 +56,7 @@
         <p class="section-summary">We fund the research, market mapping, and owner outreach. You pay only when we produce an introduction that meets the standard agreed before launch.</p>
       </div>
       <div class="risk-model">
-        <div class="risk-price"><strong>$1,000</strong><span>Per qualified proprietary introduction</span></div>
+        <div class="risk-price"><strong>Performance-based<br>origination.</strong><span>Fees are tied to qualified introductions, not research hours or outreach activity.</span></div>
         <div class="risk-terms"><h3>The risk stays with us.</h3><ul><li>No retainer</li><li>No minimum volume</li><li>No long-term commitment</li><li>No charge for research or outreach</li></ul></div>
         <p class="risk-guarantee"><strong>Qualification guarantee</strong>If an introduction does not meet the criteria agreed with your team, it is not billable.</p>
       </div>
@@ -97,17 +97,27 @@
           <svg viewBox="0 0 420 160" aria-hidden="true"><path class="route" d="M20 120 C100 20, 160 145, 230 68 S340 110, 400 25"/><circle class="route-dot" cx="20" cy="120" r="7"/></svg>
           <h3 id="step-title">Build the brief around how you buy.</h3>
           <p id="step-copy">We translate your acquisition thesis into specific search criteria, strategic priorities, exclusions, and a shared qualification standard.</p>
+          <ul class="mandate-checklist" id="mandate-checklist" aria-label="Acquisition mandate criteria">
+            <li>Sector and subsector</li>
+            <li>EBITDA range</li>
+            <li>Revenue or enterprise value</li>
+            <li>Geography</li>
+            <li>Ownership profile</li>
+            <li>Business model and exclusions</li>
+          </ul>
         </div>
       </div>
-      <p class="ai-note"><span>AI expands coverage.</span> Humans establish relationships. Our system prioritizes a broader private-market universe; every introduction is still human-qualified.</p>
+      <p class="ai-note"><span>Mandate fit comes first.</span> Each introduction is made only after we confirm the business aligns with your acquisition criteria and the owner has expressed interest in a conversation.</p>
     </section>
 
     <section class="mandate section" id="mandate">
       <div class="mandate-copy"><h2>Where would more<br><em>coverage matter?</em></h2><p>Give us the outline. We’ll show you how First Canopy would build an origination program around it.</p></div>
       <form id="mandate-form" novalidate>
         <div class="form-row"><label for="sector">Sector or theme <span>*</span></label><input id="sector" name="sector" placeholder="e.g. vertical market software" required></div>
-        <div class="split"><div class="form-row"><label for="geography">Geography</label><input id="geography" name="geography" placeholder="e.g. North America"></div><div class="form-row"><label for="size">Target size</label><input id="size" name="size" placeholder="e.g. $5–25M revenue"></div></div>
-        <div class="form-row"><label for="priority">What would make a target compelling?</label><textarea id="priority" name="priority" rows="3" placeholder="Ownership, capability, business model, strategic rationale…"></textarea></div>
+        <div class="split"><div class="form-row"><label for="geography">Geography</label><input id="geography" name="geography" placeholder="e.g. North America"></div><div class="form-row"><label for="ebitda">EBITDA range</label><input id="ebitda" name="ebitda" placeholder="e.g. $2–10M"></div></div>
+        <div class="split"><div class="form-row"><label for="size">Revenue or enterprise value</label><input id="size" name="size" placeholder="e.g. $10–50M revenue"></div><div class="form-row"><label for="ownership">Ownership profile</label><input id="ownership" name="ownership" placeholder="e.g. founder-owned or family-owned"></div></div>
+        <div class="form-row"><label for="transaction">Transaction preferences</label><input id="transaction" name="transaction" placeholder="e.g. majority acquisition, full buyout, or flexible"></div>
+        <div class="form-row"><label for="priority">Strategic priorities and exclusions</label><textarea id="priority" name="priority" rows="3" placeholder="Business model, capabilities, customer profile, strategic rationale, and anything to exclude…"></textarea></div>
         <button class="button button-light" type="submit">Build my coverage brief <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></button>
         <p class="form-note" id="form-note">No commitment. We’ll use this only to prepare your mandate discussion.</p>
         <div class="brief-result" id="brief-result" tabindex="-1" aria-live="polite"></div>

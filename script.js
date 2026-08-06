@@ -21,6 +21,7 @@ const tabs = document.querySelectorAll('[role="tab"]');
 const route = document.querySelector('.route');
 const routeDot = document.querySelector('.route-dot');
 const processCard = document.querySelector('.process-card');
+const mandateChecklist = document.querySelector('#mandate-checklist');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const heroVideo = document.querySelector('.hero-video');
 function syncHeroMotion() {
@@ -113,6 +114,7 @@ tabs.forEach(tab => tab.addEventListener('click', () => {
     document.querySelector('#step-progress').textContent = step[1];
     document.querySelector('#step-title').textContent = step[2];
     document.querySelector('#step-copy').textContent = step[3];
+    mandateChecklist.hidden = Number(tab.dataset.step) !== 0;
     processCard.classList.remove('is-changing');
   };
   if (reducedMotion.matches) updateContent();
@@ -129,10 +131,13 @@ document.querySelector('#mandate-form').addEventListener('submit', event => {
   }
   sector.removeAttribute('aria-invalid');
   const geography = document.querySelector('#geography').value.trim() || 'your priority markets';
+  const ebitda = document.querySelector('#ebitda').value.trim() || 'your target EBITDA range';
   const size = document.querySelector('#size').value.trim() || 'your target size range';
+  const ownership = document.querySelector('#ownership').value.trim() || 'your preferred ownership profile';
+  const transaction = document.querySelector('#transaction').value.trim() || 'your preferred transaction structure';
   const priority = document.querySelector('#priority').value.trim() || 'the strategic and ownership characteristics you define';
   const result = document.querySelector('#brief-result');
-  result.innerHTML = `<strong>Coverage brief ready.</strong><br>First Canopy would map ${sector.value.trim()} businesses across ${geography}, prioritize companies within ${size}, and qualify owners against ${priority}. The engagement would be billed only when an introduction clears the agreed standard.`;
+  result.innerHTML = `<strong>Coverage brief ready.</strong><br>First Canopy would map ${sector.value.trim()} businesses across ${geography}, prioritize companies within ${size} and ${ebitda}, focus on ${ownership}, and qualify opportunities against ${transaction} and ${priority}. Fees are tied to introductions that clear the agreed qualification standard.`;
   result.classList.add('show'); result.focus();
   document.querySelector('#form-note').textContent = 'A strong first brief. Refine any field to make the mandate more specific.';
 });

@@ -22,7 +22,7 @@ footer .brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(16%) sa
 .risk-model>div,.risk-guarantee{padding:38px 36px 42px;margin:0}
 .risk-model>*+*{border-left:1px solid rgba(16,36,31,.28)}
 .risk-price{display:flex;flex-direction:column;justify-content:space-between;min-height:260px;background:var(--forest);color:var(--white)}
-.risk-price strong{font:500 clamp(54px,6vw,86px)/1 "Manrope";letter-spacing:-.06em}
+.risk-price strong{font:500 clamp(40px,4.4vw,62px)/1.04 "Manrope";letter-spacing:-.055em}
 .risk-price span{max-width:240px;font:600 12px/1.45 "Manrope";letter-spacing:.08em;text-transform:uppercase;color:#c6d0cc}
 .risk-terms h3{font:500 28px/1.2 "Manrope";letter-spacing:-.03em;margin:0 0 36px}
 .risk-terms ul{list-style:none;padding:0;margin:0}
@@ -93,3 +93,17 @@ html,body{background:var(--deep)}
 }
 @media(max-width:600px){.site-header>.menu-toggle{font-size:initial;min-width:48px}.mobile-menu{left:12px;right:12px}}
 @media(prefers-reduced-motion:reduce){.mobile-menu,.menu-toggle span{transition:none}}
+
+/* Keep all five process stages visible on narrow screens */
+@media(max-width:600px){
+  .process-tabs{grid-template-columns:repeat(5,minmax(0,1fr));width:100%;overflow:visible}
+  .process-tabs button{min-width:0;gap:0;padding:16px 2px;font-size:clamp(9px,2.75vw,11px);white-space:nowrap}
+  .process-tabs button[aria-selected="true"]{padding-left:2px}
+}
+
+/* Acquisition mandate details */
+.mandate-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;list-style:none;margin:24px 0 0;padding:20px 0 0;border-top:1px solid var(--line);max-width:620px}
+.mandate-checklist[hidden]{display:none}
+.mandate-checklist li{position:relative;padding-left:22px;color:#4f5f58;font-size:13px;line-height:1.45}
+.mandate-checklist li:before{content:"";position:absolute;left:0;top:.32em;width:9px;height:5px;border-left:1.5px solid var(--forest);border-bottom:1.5px solid var(--forest);transform:rotate(-45deg)}
+@media(max-width:600px){.mandate-checklist{grid-template-columns:1fr;gap:8px;margin-top:18px;padding-top:16px}.process-card{min-height:540px}}
