@@ -23,13 +23,15 @@ const routeDot = document.querySelector('.route-dot');
 const processCard = document.querySelector('.process-card');
 const mandateChecklist = document.querySelector('#mandate-checklist');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileHero = window.matchMedia('(max-width: 600px)');
 const heroVideo = document.querySelector('.hero-video');
 function syncHeroMotion() {
-  if (reducedMotion.matches) heroVideo?.pause();
+  if (reducedMotion.matches || mobileHero.matches) heroVideo?.pause();
   else heroVideo?.play().catch(() => {});
 }
 syncHeroMotion();
 reducedMotion.addEventListener?.('change', syncHeroMotion);
+mobileHero.addEventListener?.('change', syncHeroMotion);
 let isResettingHeroVideo = false;
 function resetHeroVideoLoop() {
   if (!heroVideo || isResettingHeroVideo || !Number.isFinite(heroVideo.duration)) return;

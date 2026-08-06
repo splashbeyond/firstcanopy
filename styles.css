@@ -18,7 +18,7 @@ footer .brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(16%) sa
 .section-summary{max-width:470px;margin:0;color:var(--muted);font-size:17px;line-height:1.65}
 .risk{background:#e6e9dc}
 .risk .section-heading{margin-bottom:58px}
-.risk-model{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink);border-left:0}
+.risk-model{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink)}
 .risk-model>div,.risk-guarantee{padding:38px 36px 42px;margin:0}
 .risk-model>*+*{border-left:1px solid rgba(16,36,31,.28)}
 .risk-model>*{position:relative;transition:background-color 220ms ease}
@@ -47,7 +47,7 @@ footer .brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(16%) sa
 .process-card.is-changing h3,.process-card.is-changing>p{opacity:0;transform:translateY(7px)}
 .process-card.is-changing>div{opacity:.45}
 .route-dot{transition:none;filter:drop-shadow(0 0 5px rgba(23,61,50,.2));will-change:transform}
-@media(max-width:600px){.hero:before{background:rgba(5,35,28,.82)}.hero-video{object-position:center}}
+@media(max-width:600px){.hero{background:var(--deep) url('assets/hero-poster.jpg') center/cover no-repeat}.hero:before{background:rgba(5,35,28,.82)}.hero-video{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-video{display:none}}
 
 /* Tighter editorial rhythm between major sections */
