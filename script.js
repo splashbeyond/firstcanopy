@@ -123,23 +123,75 @@ tabs.forEach(tab => tab.addEventListener('click', () => {
   else window.setTimeout(updateContent, 130);
 }));
 
-document.querySelector('#mandate-form').addEventListener('submit', event => {
+const mandateForm = document.querySelector('#mandate-form');
+const bookingStep = document.querySelector('#booking-step');
+const bookingSuccess = document.querySelector('#booking-success');
+const openCalendarButton = document.querySelector('#open-calendar');
+const mandateSection = document.querySelector('#mandate');
+const formNote = document.querySelector('#form-note');
+let bookingUrl = 'https://calendly.com/davis-firstcanopy/30min?primary_color=0c2b23';
+
+function setIntakeProgress(step) {
+  document.querySelectorAll('[data-intake-progress]').forEach(item => item.classList.toggle('is-active', item.dataset.intakeProgress === step));
+}
+
+function prepareBookingUrl(name, email) {
+  const url = new URL('https://calendly.com/davis-firstcanopy/30min');
+  url.searchParams.set('primary_color', '0c2b23');
+  if (name) url.searchParams.set('name', name);
+  url.searchParams.set('email', email);
+  url.searchParams.set('utm_source', 'firstcanopy-site');
+  url.searchParams.set('utm_medium', 'mandate-intake');
+  bookingUrl = url.toString();
+  openCalendarButton.href = bookingUrl;
+}
+
+function openCalendlyPopup() {
+  if (!window.Calendly?.initPopupWidget) return false;
+  window.Calendly.initPopupWidget({ url: bookingUrl });
+  return true;
+}
+
+mandateForm.addEventListener('submit', event => {
   event.preventDefault();
-  const sector = document.querySelector('#sector');
-  if (!sector.value.trim()) {
-    sector.setAttribute('aria-invalid', 'true');
-    document.querySelector('#form-note').textContent = 'Please add a sector or acquisition theme to build the brief.';
-    sector.focus(); return;
+  const requiredFields = [...mandateForm.querySelectorAll('[required]')];
+  requiredFields.forEach(field => field.removeAttribute('aria-invalid'));
+  const invalidField = requiredFields.find(field => !field.checkValidity());
+  if (invalidField) {
+    invalidField.setAttribute('aria-invalid', 'true');
+    formNote.textContent = 'Please enter a valid work email before scheduling.';
+    invalidField.focus();
+    return;
   }
-  sector.removeAttribute('aria-invalid');
-  const geography = document.querySelector('#geography').value.trim() || 'your priority markets';
-  const ebitda = document.querySelector('#ebitda').value.trim() || 'your target EBITDA range';
-  const size = document.querySelector('#size').value.trim() || 'your target size range';
-  const ownership = document.querySelector('#ownership').value.trim() || 'your preferred ownership profile';
-  const transaction = document.querySelector('#transaction').value.trim() || 'your preferred transaction structure';
-  const priority = document.querySelector('#priority').value.trim() || 'the strategic and ownership characteristics you define';
-  const result = document.querySelector('#brief-result');
-  result.innerHTML = `<strong>Coverage brief ready.</strong><br>First Canopy would map ${sector.value.trim()} businesses across ${geography}, prioritize companies within ${size} and ${ebitda}, focus on ${ownership}, and qualify opportunities against ${transaction} and ${priority}. Fees are tied to introductions that clear the agreed qualification standard.`;
-  result.classList.add('show'); result.focus();
-  document.querySelector('#form-note').textContent = 'A strong first brief. Refine any field to make the mandate more specific.';
+  mandateForm.hidden = true;
+  bookingSuccess.hidden = true;
+  bookingStep.hidden = false;
+  mandateSection.classList.add('is-scheduling');
+  setIntakeProgress('schedule');
+  prepareBookingUrl(document.querySelector('#full-name').value.trim(), document.querySelector('#work-email').value.trim());
+  openCalendlyPopup();
+  document.querySelector('#booking-title').focus?.();
+  bookingStep.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
+});
+
+document.querySelector('#booking-back').addEventListener('click', () => {
+  bookingStep.hidden = true;
+  mandateForm.hidden = false;
+  mandateSection.classList.remove('is-scheduling');
+  setIntakeProgress('details');
+  document.querySelector('#full-name').focus();
+});
+
+openCalendarButton.addEventListener('click', event => {
+  if (!openCalendlyPopup()) return;
+  event.preventDefault();
+});
+
+window.addEventListener('message', event => {
+  if (event.origin !== 'https://calendly.com' || !event.data?.event?.startsWith('calendly.') || bookingStep.hidden) return;
+  if (event.data.event !== 'calendly.event_scheduled') return;
+  bookingStep.hidden = true;
+  bookingSuccess.hidden = false;
+  mandateSection.classList.remove('is-scheduling');
+  bookingSuccess.focus();
 });
