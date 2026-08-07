@@ -23,7 +23,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=23" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -126,24 +127,39 @@
     </section>
 
     <section class="mandate section" id="mandate">
-      <div class="mandate-copy"><h2>Where would more<br><em>coverage matter?</em></h2><p>Give us the outline. We’ll show you how First Canopy would build an origination program around it.</p></div>
-      <form id="mandate-form" novalidate>
-        <div class="form-row"><label for="sector">Sector or theme <span>*</span></label><input id="sector" name="sector" placeholder="e.g. vertical market software" required></div>
-        <div class="split"><div class="form-row"><label for="geography">Geography</label><input id="geography" name="geography" placeholder="e.g. North America"></div><div class="form-row"><label for="ebitda">EBITDA range</label><input id="ebitda" name="ebitda" placeholder="e.g. $2–10M"></div></div>
-        <div class="split"><div class="form-row"><label for="size">Revenue or enterprise value</label><input id="size" name="size" placeholder="e.g. $10–50M revenue"></div><div class="form-row"><label for="ownership">Ownership profile</label><input id="ownership" name="ownership" placeholder="e.g. founder-owned or family-owned"></div></div>
-        <div class="form-row"><label for="transaction">Transaction preferences</label><input id="transaction" name="transaction" placeholder="e.g. majority acquisition, full buyout, or flexible"></div>
-        <div class="form-row"><label for="priority">Strategic priorities and exclusions</label><textarea id="priority" name="priority" rows="3" placeholder="Business model, capabilities, customer profile, strategic rationale, and anything to exclude…"></textarea></div>
-        <button class="button button-light" type="submit">Build my coverage brief <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></button>
-        <p class="form-note" id="form-note">No commitment. We’ll use this only to prepare your mandate discussion.</p>
-        <div class="brief-result" id="brief-result" tabindex="-1" aria-live="polite"></div>
-      </form>
+      <div class="mandate-copy"><h2>Start with<br><em>your mandate.</em></h2><p>Share the outline, then choose a time for a focused acquisition mandate review with First Canopy.</p><div class="intake-promise"><span>01</span><p>Tell us how your team buys.</p><span>02</span><p>Choose a convenient time.</p></div></div>
+      <div class="intake-shell">
+        <div class="intake-progress" aria-label="Mandate intake progress"><span class="is-active" data-intake-progress="details">01&nbsp; Details</span><span data-intake-progress="schedule">02&nbsp; Schedule</span></div>
+        <form id="mandate-form" novalidate>
+          <fieldset><legend>About you</legend>
+            <div class="split"><div class="form-row"><label for="full-name">Full name</label><input id="full-name" name="name" autocomplete="name" placeholder="Your name"></div><div class="form-row"><label for="work-email">Work email <span>*</span></label><input id="work-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required></div></div>
+            <div class="split"><div class="form-row"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" placeholder="Company name"></div><div class="form-row"><label for="role">Role</label><input id="role" name="role" autocomplete="organization-title" placeholder="e.g. VP, Corporate Development"></div></div>
+          </fieldset>
+          <fieldset><legend>Acquisition mandate</legend>
+            <div class="form-row"><label for="sector">Sector or theme</label><input id="sector" name="sector" placeholder="e.g. vertical market software"></div>
+            <div class="split"><div class="form-row"><label for="geography">Geography</label><input id="geography" name="geography" placeholder="e.g. North America"></div><div class="form-row"><label for="ebitda">EBITDA range</label><input id="ebitda" name="ebitda" placeholder="e.g. $2–10M"></div></div>
+            <div class="split"><div class="form-row"><label for="size">Revenue or enterprise value</label><input id="size" name="size" placeholder="e.g. $10–50M revenue"></div><div class="form-row"><label for="ownership">Ownership profile</label><input id="ownership" name="ownership" placeholder="e.g. founder-owned"></div></div>
+            <div class="form-row"><label for="transaction">Transaction preferences</label><input id="transaction" name="transaction" placeholder="e.g. majority acquisition or full buyout"></div>
+            <div class="form-row"><label for="priority">Strategic priorities and exclusions</label><textarea id="priority" name="priority" rows="3" placeholder="Capabilities, customer profile, strategic rationale, and anything to exclude…"></textarea></div>
+          </fieldset>
+          <button class="button button-light intake-submit" type="submit">Continue to scheduling <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></button>
+          <p class="form-note" id="form-note">No commitment. Your details are used to prepare for the mandate discussion.</p>
+        </form>
+        <section class="booking-step" id="booking-step" aria-labelledby="booking-title" hidden>
+          <div class="booking-head"><div><span>Schedule your review</span><h3 id="booking-title">Choose a time that works.</h3></div><button class="booking-back" id="booking-back" type="button">Edit details</button></div>
+          <div class="booking-launch"><span class="booking-launch-mark" aria-hidden="true">02</span><p>Your details are ready.</p><h4>Open the calendar to select an available time.</h4><a class="button booking-launch-button" id="open-calendar" href="https://calendly.com/davis-firstcanopy/30min?primary_color=0c2b23" target="_blank" rel="noopener">Open scheduling calendar <svg class="cta-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6"/></svg></a><small>If the calendar did not open automatically, use the button above.</small></div>
+        </section>
+        <section class="booking-success" id="booking-success" tabindex="-1" aria-live="polite" hidden>
+          <span class="success-mark" aria-hidden="true">✓</span><p>Meeting confirmed</p><h3>We look forward to speaking with you.</h3><span>We’ll review your mandate details before the call so we can make the conversation useful from the start.</span><a href="#top" class="text-link">Return to the top</a>
+        </section>
+      </div>
     </section>
   </main>
 
   <footer>
     <a class="brand" href="#top"><img class="brand-logo" src="assets/first-canopy-logo.svg" alt="" /><span>FIRST CANOPY</span></a>
     <p>Proprietary acquisition coverage for Corporate Development and M&amp;A teams.</p>
-    <p>© 2026 First Canopy</p>
+    <p class="footer-meta"><a href="mailto:davis@firstcanopy.co">davis@firstcanopy.co</a><span>© 2026 First Canopy</span></p>
     <div class="compliance-disclosure">
       <p class="compliance-lead">First Canopy provides acquisition origination and introduction services to corporate development teams and other strategic buyers. We identify, engage and qualify prospective acquisition candidates against client-defined criteria. First Canopy does not provide investment advice, securities brokerage, valuation, transaction negotiation, financing or legal services.</p>
       <details>
@@ -159,6 +175,7 @@
       </details>
     </div>
   </footer>
-  <script src="script.js?v=10"></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="script.js?v=15"></script>
 </body>
 </html>
